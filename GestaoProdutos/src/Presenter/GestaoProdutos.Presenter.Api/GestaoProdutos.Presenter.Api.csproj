@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Application\GestaoProdutos.Application.Commands\GestaoProdutos.Application.Commands.csproj" />
+      <ProjectReference Include="..\..\Application\GestaoProdutos.Application.Queries\GestaoProdutos.Application.Queries.csproj" />
+      <ProjectReference Include="..\..\Application\GestaoProdutos.Application.Services\GestaoProdutos.Application.Services.csproj" />
+    </ItemGroup>
+
+</Project>
