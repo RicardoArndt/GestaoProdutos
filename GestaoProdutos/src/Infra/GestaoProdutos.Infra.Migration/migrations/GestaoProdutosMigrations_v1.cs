@@ -2,29 +2,29 @@ using FluentMigrator;
 
 namespace GestaoProdutos.Infra.Migration.migrations;
 
-[Migration(1)]
+[FluentMigrator.Migration(1)]
 public class GestaoProdutosMigrations_v1 : FluentMigrator.Migration
 {
     public override void Up()
     {
     	Create.Table("Produtos")
 	        .WithColumn("Id").AsGuid().NotNullable().PrimaryKey()
-            .WithColumn("Codigo").AsInt32().Unique().NotNullable()
+            .WithColumn("Codigo").AsInt32().Identity().Unique().NotNullable()
             .WithColumn("Descricao").AsString(20).NotNullable()
             .WithColumn("Situacao").AsBoolean().NotNullable()
             .WithColumn("DataFabricacao").AsDate().NotNullable()
             .WithColumn("DataValidade").AsDate()
-            .WithColumn("FornecedorId").AsGuid().NotNullable();
+            .WithColumn("FornecedorId").AsGuid().ForeignKey().NotNullable();
 
     	Create.Table("Fornecedores")
             .WithColumn("Id").AsGuid().NotNullable().PrimaryKey()
-            .WithColumn("Codigo").AsInt32().Unique().NotNullable()
+            .WithColumn("Codigo").AsInt32().Identity().Unique().NotNullable()
             .WithColumn("Descricao").AsString(20).NotNullable()
             .WithColumn("Cnpj").AsString(14).Unique().NotNullable();
 
         Create.ForeignKey("FK_Produto_Fornecedor")
-            .FromTable("Fornecedores").ForeignColumn("Id")
-            .ToTable("Produtos").PrimaryColumn("FornecedorId");
+            .FromTable("Produtos").ForeignColumn("FornecedorId")
+            .ToTable("Fornecedores").PrimaryColumn("Id");
         
         InsertInitialData();
     }
@@ -38,15 +38,14 @@ public class GestaoProdutosMigrations_v1 : FluentMigrator.Migration
     {
         // Inclusao de Fornecedores
         Guid fornecedorId1 = Guid.NewGuid();
-        InsertFornecedor(fornecedorId1, 1, "Ricardo LTDA", "12345678912345");
+        InsertFornecedor(fornecedorId1, "Ricardo LTDA", "12345678912345");
        
         Guid fornecedorId2 = Guid.NewGuid();
-        InsertFornecedor(fornecedorId2, 2, "Bruno LTDA", "12345678912346");
+        InsertFornecedor(fornecedorId2, "Bruno LTDA", "12345678912346");
 
         // Inclusao de Produtos
         InsertProduto(
-            Guid.NewGuid(), 
-            1, 
+            Guid.NewGuid(),
             "Guaraná", 
             true, 
             DateTime.Now, 
@@ -54,8 +53,7 @@ public class GestaoProdutosMigrations_v1 : FluentMigrator.Migration
             fornecedorId1);
         
         InsertProduto(
-            Guid.NewGuid(), 
-            2, 
+            Guid.NewGuid(),
             "Azeitona", 
             false, 
             DateTime.Now, 
@@ -64,8 +62,7 @@ public class GestaoProdutosMigrations_v1 : FluentMigrator.Migration
     }
     
     private void InsertProduto(
-        Guid id, 
-        int codigo, 
+        Guid id,
         string descricao, 
         bool situacao, 
         DateTime dataFabricacao, 
@@ -75,7 +72,6 @@ public class GestaoProdutosMigrations_v1 : FluentMigrator.Migration
         Insert.IntoTable("Produtos").Row(new
         {
             Id = id,
-            Codigo = codigo,
             Descricao = descricao,
             Situacao = situacao,
             DataFabricacao = dataFabricacao,
@@ -85,15 +81,13 @@ public class GestaoProdutosMigrations_v1 : FluentMigrator.Migration
     }        
 
     private void InsertFornecedor(
-        Guid id, 
-        int codigo,
+        Guid id,
         string descricao, 
         string cnpj)
     {
         Insert.IntoTable("Fornecedores").Row(new
         {
             Id = id,
-            Codigo = codigo,
             Descricao = descricao,
             Cnpj = cnpj
         });
