@@ -7,9 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\CrossCutting\GestaoProdutos.CrossCutting.Exceptions\GestaoProdutos.CrossCutting.Exceptions.csproj" />
       <ProjectReference Include="..\..\Domain\GestaoProdutos.Domain.Entities\GestaoProdutos.Domain.Entities.csproj" />
       <ProjectReference Include="..\..\Domain\GestaoProdutos.Domain.Repositories\GestaoProdutos.Domain.Repositories.csproj" />
-      <ProjectReference Include="..\..\Domain\GestaoProdutos.Domain.ValueObjects\GestaoProdutos.Domain.ValueObjects.csproj" />
+      <ProjectReference Include="..\..\Infra\GestaoProdutos.Infra.Database\GestaoProdutos.Infra.Database.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="12.0.1" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
     </ItemGroup>
 
 </Project>

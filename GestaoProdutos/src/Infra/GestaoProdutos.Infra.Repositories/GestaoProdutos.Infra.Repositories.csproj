@@ -6,4 +6,15 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\CrossCutting\GestaoProdutos.CrossCutting.Exceptions\GestaoProdutos.CrossCutting.Exceptions.csproj" />
+      <ProjectReference Include="..\..\Domain\GestaoProdutos.Domain.Entities\GestaoProdutos.Domain.Entities.csproj" />
+      <ProjectReference Include="..\..\Domain\GestaoProdutos.Domain.Repositories\GestaoProdutos.Domain.Repositories.csproj" />
+      <ProjectReference Include="..\GestaoProdutos.Infra.Database\GestaoProdutos.Infra.Database.csproj" />
+    </ItemGroup>
+
 </Project>

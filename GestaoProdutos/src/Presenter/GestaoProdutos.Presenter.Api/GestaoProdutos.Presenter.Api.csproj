@@ -9,7 +9,12 @@
     <ItemGroup>
       <ProjectReference Include="..\..\Application\GestaoProdutos.Application.Commands\GestaoProdutos.Application.Commands.csproj" />
       <ProjectReference Include="..\..\Application\GestaoProdutos.Application.Queries\GestaoProdutos.Application.Queries.csproj" />
-      <ProjectReference Include="..\..\Application\GestaoProdutos.Application.Services\GestaoProdutos.Application.Services.csproj" />
+      <ProjectReference Include="..\..\Infra\GestaoProdutos.Infra.Database\GestaoProdutos.Infra.Database.csproj" />
+      <ProjectReference Include="..\..\Infra\GestaoProdutos.Infra.Repositories\GestaoProdutos.Infra.Repositories.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     </ItemGroup>
 
 </Project>
